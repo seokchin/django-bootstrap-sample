@@ -1,0 +1,12 @@
+{% extends "base.html" %} 
+{% load i18n %} 
+{% block body %}
+
+<div class="row-fluid">
+	<div class="span12">
+		<h2>{{ post.title }}</h2>
+		<p>{{ post.contents }}</p>
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block body %}
+
+<div class="row-fluid">
+	<div class="span12">
+		{% for post in postList  %}
+		<div class="row-fluid">
+			<div class="span12">
+				<h2>{{ post.title }}</h2>
+				<p>{{ post.contents }}</p>
+				<p>
+					<a class="btn" href="{% url 'detail' post.id %}">View Details</a>
+					<a class="btn" href="{% url 'update' post.id %}">Modify</a>
+					<a class="btn" href="{% url 'delete' post.id %}">Delete</a>
+				</p>
+			</div>
+		</div>
+   		{% endfor %}
+	</div>
+</div>
+	
+<div class="page-header">			
+</div>
+<p><a class="btn" href="{% url 'create' %}">Add</a><p>
+
+{# .... **Now the pagination section** .... #}
+    {% if is_paginated %}
+        <div class="pagination">
+            <span class="page-links">
+                <span class="page-current">
+                	<h3>
+                    {{ page_obj.paginator.count }}개 중 {{ page_obj.start_index }} - {{ page_obj.end_index }}
+                    
+	                {% if page_obj.has_previous %}
+	                    <a href="/task/list?page={{ page_obj.previous_page_number }}"><</a>
+	                {% else %}
+	                	<
+	                {% endif %}
+	                {% if page_obj.has_next %}
+	                    <a href="/task/list?page={{ page_obj.next_page_number }}">></a>
+	                {% else %}
+	                	>
+	                {% endif %}
+                	</h3>
+                </span>
+            </span>
+        </div>
+    {% endif %}
+
+{% endblock %}

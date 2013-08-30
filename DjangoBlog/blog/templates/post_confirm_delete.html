@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block body %}
+{% load i18n %}
+
+<div class="row-fluid">
+  <h3>Do you delete this post?</h3>
+	<div class="span12">
+		{{ post }}
+		<br><br>
+		<form action="" method="post">{% csrf_token %}
+		   	<button type="submit" class="btn">Do it</button>
+		</form>
+	</div>
+</div>
+
+{% endblock %}
